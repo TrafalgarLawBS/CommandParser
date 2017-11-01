@@ -10,7 +10,8 @@ namespace CommandParser
     {
         static void Main(string[] args)
         {
-            //cool
+            Parser.DoTheMagic("(l12,r43,u123,d21)");
+            Console.ReadLine();
         }
     }
 }
