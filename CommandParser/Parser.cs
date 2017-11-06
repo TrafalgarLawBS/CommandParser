@@ -10,28 +10,54 @@ namespace CommandParser
     public class Parser
     {
         //parser logic
-
-        private Command Left { get; set; }
-        private Command Right { get; set; }
-        private Command Up { get; set; }
-        private Command Down { get; set; }
-
+      
         private String StringToParse { get; set; }
 
-        public static void DoTheMagic(String command) {
+        public Parser() { }
 
-            var charsToRemove = new string[] { "(", ")", " ", "."};
+        public Parser(String command) {
+            this.StringToParse = command;
+        }
+
+        public List<Command> parseCommandString() {
+
+            List<Command> listOfCommands = new List<Command>();
+
+            bool badCommand;
+
+            var charsToRemove = new string[] { "(", ")", " ", "." };
 
             foreach (var c in charsToRemove)
             {
-                command = command.Replace(c, string.Empty);
+                StringToParse = StringToParse.Replace(c, string.Empty);
             }
 
-            String[] listOfCommands = command.Split(',');
+            String[] separatedCommands = StringToParse.Split(',');
 
-            foreach (var substring in listOfCommands)
-                Console.WriteLine(substring);
-        }
+            foreach (var substring in separatedCommands) {
+                String dir = substring[0].ToString();
+                int dis = Int32.Parse(substring.Substring(1));
 
+
+                if (dir.Equals("l"))
+                    dir = "left";
+                else if (dir.Equals("r"))
+                    dir = "right";
+                else if (dir.Equals("u"))
+                    dir = "up";
+                else if (dir.Equals("d"))
+                    dir = "down";
+                else {
+                    badCommand = true;
+                }
+
+                Command com = new Command(dir, dis);
+                listOfCommands.Add(com);
+
+            }
+
+            return listOfCommands;
+
+        }  
     }
 }

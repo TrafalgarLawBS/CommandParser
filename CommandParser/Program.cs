@@ -10,8 +10,18 @@ namespace CommandParser
     {
         static void Main(string[] args)
         {
-            Parser.DoTheMagic("(l12,r43,u123,d21)");
+
+            String s = "l50,r43,u87,d23";
+            Parser p1 = new Parser(s);
+
+            List<Command> commands = p1.parseCommandString();
+
+            foreach (Command c in commands) {
+                Console.WriteLine(c.ToString());
+            }
+            Console.WriteLine();
             Console.ReadLine();
+            
         }
     }
 }
