@@ -9,25 +9,16 @@ namespace CommandParser
     //Contains the drone commands    
     public class Command
     {
-        private int distance;
-        private String direction;
+        public int Distance { get; set; }
 
-        public int Distance {
-            get { return distance; }
-            set { distance = value; }
-        }
+        public string Direction { get; set; }
 
-        public String Direction {
-            get { return direction; }
-            set { direction = value; }
-        }
-
-        public Command(String dir , int dis) {
+        public Command(string dir , int dis) {
             Direction = dir;
             Distance = dis;
         }
 
-        public override String ToString() {
+        public override string ToString() {
             return "Direction: " + Direction + " , Distance: " + Distance.ToString();
         }
     }
